@@ -1,0 +1,18 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+.info.legend i {
+  width: 20px; /* Set the width of the color square */
+  height: 20px; /* Set the height of the color square */
+  display: inline-block; /* Ensure they are displayed inline */
+  margin-right: 5px; /* Space between the square and the text */
+  background: rgba(255, 255, 255, 0.8); /* White background with some transparency */
+}
