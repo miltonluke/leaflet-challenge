@@ -3,7 +3,10 @@ body {
   margin: 0;
 }
 
-#map,
+#map {
+  height: 600px; /* Set a defined height for the map */
+  width: 100%; /* Set the width to 100% for full responsiveness */
+}
 body,
 html {
   height: 100%;

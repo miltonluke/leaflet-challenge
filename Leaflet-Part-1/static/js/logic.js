@@ -15,7 +15,7 @@ let myMap = L.map("map", {
 });
 
 // Then add the 'basemap' tile layer to the map.
-basemap.addTo(myMap);
+
 // OPTIONAL: Step 2
 // Create the layer groups, base maps, and overlays for our two sets of data, earthquakes and tectonic_plates.
 // Add a control to the map that will allow the user to change which layers are visible.
@@ -63,11 +63,9 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
   // Add a GeoJSON layer to the map once the file is loaded.
   L.geoJson(data, {
     // Turn each feature into a circleMarker on the map.
-    pointToLayer: function (feature, latlng) {
-      return L.circleMarker(latlng);
+    pointToLayer: function (features, latlng) {
+      return L.circleMarker(latlng, styleInfo(features));
     },
-    // Set the style for each circleMarker using our styleInfo function.
-    style: styleInfo,
     // Create a popup for each marker to display the magnitude and location of the earthquake after the marker has been created and styled
     onEachFeature: function (features, layer) {
       layer.bindPopup("Magnitude: " + features.properties.mag + "<br>Location: " + features.properties.place +"<br>Depth: " + features.geometry.coordinates[2] + "km");
@@ -88,8 +86,8 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
     // Set the background color and other styles for the legend
     div.style.backgroundColor = "rgba(255, 255, 255, 0.8)"; // White background with some transparency
     div.style.padding = "10px"; // Add some padding for better spacing
-    div.style.borderRadius = "5px"; // Optional: Add rounded corners
-    div.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.5)"; // Optional: Add a shadow for better visibility
+    div.style.borderRadius = "5px"; // Add rounded corners
+    div.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.5)"; // Add a shadow for better visibility
   
     // Initialize depth intervals and colors for the legend
     const depthIntervals = [-10, 10, 30, 50, 70, 90];
